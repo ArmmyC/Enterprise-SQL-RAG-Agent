@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local runtime artifacts
+logs/
+*.log
+*.pid
+test_submission/
+outputs/
+
+# Large/private data and model artifacts
+data-parser/output/*
+!data-parser/output/.gitkeep
+*.duckdb
+*.duckdb.wal
+*.duckdb.tmp
+models/
+hf-cache/
+.cache/
+
+# Archived local snapshots/bundles kept off GitHub
+_archive/
+*.zip
+
+# Local env/config
+.env
+.env.*
+!.env.example
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

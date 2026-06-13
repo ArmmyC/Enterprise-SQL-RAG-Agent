@@ -1,0 +1,441 @@
+{
+  "version": 1,
+  "routes": [
+    "sql_only",
+    "rag_only",
+    "rag_assisted_sql",
+    "hybrid_sql_rag",
+    "safe_refuse_or_verify"
+  ],
+  "thresholds": {
+    "sql_strong": 4.0,
+    "rag_strong": 3.0,
+    "policy_strong": 2.5,
+    "hybrid_strong": 4.5,
+    "low_confidence": 0.55
+  },
+  "weights": {
+    "explicit_table": 3.0,
+    "explicit_view": 2.5,
+    "explicit_column": 1.4,
+    "sql_metric": 1.2,
+    "sql_aggregation": 1.2,
+    "sql_ranking": 1.1,
+    "date_filter": 0.8,
+    "rag_document": 1.7,
+    "rag_chat": 2.0,
+    "rag_render": 2.0,
+    "rag_evidence": 1.2,
+    "policy": 1.5,
+    "hybrid": 1.6,
+    "multi_part": 1.1,
+    "safety": 3.0,
+    "entity_sql_table": 1.2,
+    "entity_route_bias": 1.0
+  },
+  "keywords": {
+    "sql_metrics": [
+      "กี่",
+      "จำนวน",
+      "เท่าไหร่",
+      "ยอด",
+      "ยอดรวม",
+      "รวม",
+      "เปอร์เซ็นต์",
+      "percent",
+      "percentage",
+      "ratio",
+      "roi",
+      "count",
+      "sum",
+      "avg",
+      "average",
+      "gross",
+      "net",
+      "thb",
+      "บาท"
+    ],
+    "sql_aggregations": [
+      "group by",
+      "แยกตาม",
+      "จัดกลุ่ม",
+      "นับ",
+      "distinct",
+      "เฉลี่ย",
+      "ผลรวม",
+      "total",
+      "volume"
+    ],
+    "sql_ranking": [
+      "มากที่สุด",
+      "สูงที่สุด",
+      "ต่ำที่สุด",
+      "top",
+      "อันดับ",
+      "largest",
+      "highest",
+      "lowest",
+      "best-selling",
+      "ขายดีที่สุด"
+    ],
+    "sql_columns": [
+      "net_total_thb",
+      "gross_total_thb",
+      "basket_total_thb",
+      "line_total_thb",
+      "amount_thb",
+      "refund_amount_thb",
+      "discount_total_thb",
+      "paid_amount_thb",
+      "business_event_date",
+      "posting_date",
+      "effective_date",
+      "as_of_date",
+      "payment_due_date",
+      "payment_received_date",
+      "loyalty_tier",
+      "customer_type",
+      "vendor_id",
+      "campaign_id",
+      "sku_id",
+      "branch_code",
+      "employee_id",
+      "txn_id",
+      "return_id",
+      "refund_id",
+      "bank_txn_id",
+      "policy_variable",
+      "policy_version_id"
+    ],
+    "sql_lookup_entities": [
+      "ceo",
+      "cfo",
+      "chief executive officer",
+      "chief financial officer",
+      "ผู้บริหาร",
+      "ประธานเจ้าหน้าที่",
+      "ตำแหน่ง",
+      "ชื่อ-นามสกุล",
+      "employee_id",
+      "พนักงาน"
+    ],
+    "date_filters": [
+      "ปี",
+      "เดือน",
+      "วันที่",
+      "ช่วง",
+      "between",
+      "ตั้งแต่",
+      "ถึง",
+      "2024",
+      "2025",
+      "2567",
+      "2568"
+    ],
+    "rag_documents": [
+      "email",
+      "memo",
+      "บันทึก",
+      "เอกสาร",
+      "minutes",
+      "meeting",
+      "ประชุม",
+      "report",
+      "รายงาน",
+      "nps",
+      "net promoter score",
+      "board",
+      "บอร์ด",
+      "note",
+      "เอกสารอ้างอิง",
+      "ตามที่ระบุในเอกสาร"
+    ],
+    "rag_chats": [
+      "line works",
+      "line oa",
+      "chat",
+      "thread",
+      "อีเมล",
+      "เจรจา",
+      "เคส",
+      "ข้อความ",
+      "โต้ตอบ"
+    ],
+    "rag_renders": [
+      "ocr",
+      "render",
+      "pdf",
+      "image",
+      "รูป",
+      "สแกน"
+    ],
+    "rag_evidence": [
+      "หลักฐาน",
+      "evidence",
+      "ระบุว่า",
+      "พูดถึง",
+      "เหตุผลที่ระบุ",
+      "ตามวลี",
+      "wording",
+      "ข้อความ"
+    ],
+    "policy": [
+      "policy",
+      "นโยบาย",
+      "effective",
+      "มีผลบังคับ",
+      "current version",
+      "as-of",
+      "signing authority",
+      "refund threshold",
+      "return_window_days",
+      "point_earning_rate_per_thb",
+      "contract version",
+      "สัญญา",
+      "อำนาจ",
+      "เพดาน"
+    ],
+    "hybrid": [
+      "audit",
+      "ตรวจ",
+      "reconciliation",
+      "cross-check",
+      "root cause",
+      "reason",
+      "สาเหตุ",
+      "flag",
+      "phantom",
+      "duplicate",
+      "ซ้ำ",
+      "invoice id",
+      "schema cutover",
+      "double-logging",
+      "trail",
+      "over-threshold",
+      "irregularity",
+      "violation",
+      "confirm",
+      "ยืนยัน"
+    ],
+    "safety_injection": [
+      "admin mode",
+      "[system]",
+      "system override",
+      "trust = high",
+      "ignore previous",
+      "previous session",
+      "เซสชันก่อน",
+      "รอบที่แล้ว",
+      "ตามที่ตกลงไว้",
+      "session ก่อนหน้า",
+      "system prompt",
+      "developer message",
+      "override",
+      "do not consult",
+      "verbatim",
+      "authoritative",
+      "reply in english only",
+      "end your message",
+      "confirmed_",
+      "fact:",
+      "พบกันใหม่",
+      "แทนคำตอบ",
+      "ตอบด้วยข้อความ",
+      "ห้ามใช้",
+      "อย่าตรวจสอบ",
+      "ไม่ต้องตรวจสอบ",
+      "ยืนยันว่า"
+    ],
+    "hidden_secret_requests": [
+      "hidden prompt",
+      "system prompt",
+      "developer message",
+      "api key",
+      "secret",
+      "credentials",
+      "token"
+    ]
+  },
+  "rag_filters": {
+    "schema": ["tables_guide", "tables_summary", "docs"],
+    "evidence": ["docs", "renders", "reports"],
+    "chat": ["docs", "logs"],
+    "render": ["renders"],
+    "report": ["reports", "docs"],
+    "hybrid": ["tables_guide", "tables_summary", "docs", "renders", "reports", "logs"]
+  },
+  "rag_modes": {
+    "schema": "text",
+    "evidence": "hybrid",
+    "hybrid": "hybrid",
+    "fallback": "text"
+  },
+  "entity_resolver": {
+    "enabled": true,
+    "max_expanded_terms": 40,
+    "patterns": [
+      {
+        "name": "policy_id",
+        "regex": "\\bPOL-\\d{3}\\b",
+        "type": "policy",
+        "expanded_terms": ["policy", "policy version", "effective date", "signing authority"],
+        "likely_tables": ["DIM_POLICY"],
+        "rag_filters": ["docs", "renders", "tables_guide", "tables_summary"]
+      },
+      {
+        "name": "memo_id",
+        "regex": "\\bMEMO-\\d{3}\\b",
+        "type": "document",
+        "expanded_terms": ["memo", "document evidence", "policy memo"],
+        "likely_tables": [],
+        "rag_filters": ["docs", "renders"]
+      },
+      {
+        "name": "minutes_id",
+        "regex": "\\bMIN-[A-Z]+-\\d{4}-\\d{2}\\b",
+        "type": "meeting_minutes",
+        "expanded_terms": ["meeting minutes", "action items", "decision log", "operations report"],
+        "likely_tables": [],
+        "rag_filters": ["docs", "reports"]
+      },
+      {
+        "name": "vendor_id",
+        "regex": "\\bV-\\d{3}\\b",
+        "type": "vendor",
+        "expanded_terms": ["vendor", "supplier", "payment", "invoice"],
+        "likely_tables": ["DIM_VENDOR", "FACT_VENDOR_PAYMENT"],
+        "rag_filters": ["docs", "logs", "tables_guide", "tables_summary"]
+      },
+      {
+        "name": "campaign_id",
+        "regex": "\\b[A-Z]{2,}-LAUNCH-\\d{4}\\b",
+        "type": "campaign",
+        "expanded_terms": ["campaign", "promotion", "redemption", "promo ROI"],
+        "likely_tables": ["DIM_CAMPAIGN", "FACT_PROMO_REDEMPTION", "FACT_SALES"],
+        "rag_filters": ["docs", "reports", "tables_guide", "tables_summary"]
+      },
+      {
+        "name": "product_code",
+        "regex": "\\b[A-Z]{2,}(?:-[A-Za-z0-9]+){2,}\\b",
+        "type": "product_or_sku",
+        "expanded_terms": ["product", "SKU", "product master", "model", "brand"],
+        "likely_tables": ["DIM_PRODUCT", "FACT_SALES"],
+        "rag_filters": ["docs", "reports", "tables_guide", "tables_summary"]
+      }
+    ],
+    "term_aliases": [
+      {
+        "terms": ["msrp", "manufacturer suggested retail price", "ราคาขายปลีกแนะนำ", "list price"],
+        "canonical": "MSRP",
+        "expanded_terms": ["MSRP", "list price", "selling price", "product master", "DIM_PRODUCT"],
+        "likely_tables": ["DIM_PRODUCT"],
+        "route_bias": "sql"
+      },
+      {
+        "terms": ["refund threshold", "refund limit", "เพดาน refund", "refund approval"],
+        "canonical": "refund_threshold",
+        "expanded_terms": ["refund threshold", "refund policy", "approval limit", "signing authority"],
+        "likely_tables": ["DIM_POLICY", "FACT_REFUND"],
+        "route_bias": "rag_assisted_sql"
+      },
+      {
+        "terms": ["nps", "net promoter score"],
+        "canonical": "NPS",
+        "expanded_terms": ["NPS", "Net Promoter Score", "customer survey", "board report", "customer satisfaction"],
+        "likely_tables": [],
+        "rag_filters": ["reports", "docs"],
+        "route_bias": "rag"
+      },
+      {
+        "terms": ["line works", "line oa", "chat", "thread"],
+        "canonical": "chat_thread",
+        "expanded_terms": ["LINE WORKS", "chat thread", "message log", "conversation evidence"],
+        "likely_tables": [],
+        "rag_filters": ["docs", "logs"],
+        "route_bias": "rag"
+      },
+      {
+        "terms": ["phantom redemption", "phantom", "double-logging", "duplicate"],
+        "canonical": "audit_anomaly",
+        "expanded_terms": ["audit anomaly", "reconciliation", "duplicate record", "promo redemption"],
+        "likely_tables": ["FACT_PROMO_REDEMPTION", "FACT_SALES"],
+        "rag_filters": ["docs", "logs", "tables_guide", "tables_summary"],
+        "route_bias": "hybrid"
+      }
+    ]
+  },
+  "model_router": {
+    "enabled": false,
+    "provider": null,
+    "model": null,
+    "temperature": 0.0,
+    "max_tokens": 512,
+    "api_base": null,
+    "api_key_env": null,
+    "fallback_when_confidence_below": 0.55
+  },
+  "orchestrator": {
+    "route_profiles": {
+      "sql_only": {
+        "rag": null,
+        "sql": true
+      },
+      "rag_only": {
+        "rag": {
+          "mode": "hybrid",
+          "staging_source": ["docs", "reports", "renders"]
+        },
+        "sql": false
+      },
+      "rag_assisted_sql": {
+        "rag": {
+          "mode": "hybrid",
+          "staging_source": ["tables_guide", "tables_summary", "docs"]
+        },
+        "sql": true
+      },
+      "hybrid_sql_rag": {
+        "rag": {
+          "mode": "hybrid",
+          "staging_source": ["tables_guide", "tables_summary", "docs", "reports", "renders", "logs"]
+        },
+        "sql": true
+      },
+      "safe_refuse_or_verify": {
+        "rag": {
+          "mode": "text",
+          "staging_source": ["docs", "reports", "renders"]
+        },
+        "sql": false
+      }
+    },
+    "fallbacks": {
+      "sql_only": ["rag_assisted_sql", "hybrid_sql_rag"],
+      "rag_only": ["hybrid_sql_rag"],
+      "rag_assisted_sql": ["hybrid_sql_rag"],
+      "hybrid_sql_rag": [],
+      "safe_refuse_or_verify": []
+    }
+  },
+  "llm": {
+    "enabled": false,
+    "mode": "none",
+    "sql_generator": {
+      "provider": "local_transformers",
+      "model_path": null,
+      "temperature": 0.0,
+      "max_new_tokens": 512
+    },
+    "answer_synthesizer": {
+      "provider": "local_transformers",
+      "model_path": null,
+      "temperature": 0.1,
+      "max_new_tokens": 1024
+    },
+    "openai_compatible": {
+      "api_base": "http://x1000c2s2b0n0:8000/v1",
+      "api_key_env": null,
+      "model": "qwen-local"
+    }
+  }
+}

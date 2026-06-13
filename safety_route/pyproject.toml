@@ -1,0 +1,10 @@
+[project]
+name = "safety-route"
+version = "0.1.0"
+description = "Standalone rule-based safety route prototype for prompt-injection detection and safe intent extraction."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

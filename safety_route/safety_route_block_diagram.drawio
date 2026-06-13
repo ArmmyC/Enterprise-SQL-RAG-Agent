@@ -1,0 +1,163 @@
+<mxfile host="app.diagrams.net" modified="2026-06-02T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="safety-route" name="Safety Route Block Diagram">
+    <mxGraphModel dx="1560" dy="980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Safety Route Block Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="430" y="30" width="420" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Prompt injection guard for Router-based Hybrid RAG" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="430" y="70" width="420" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="a" value="User Question" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="150" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="b" value="Safety Pre-check&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;scan raw question before routing&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="150" width="210" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="c" value="Injection / Unsafe&lt;br/&gt;Instruction?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="135" width="170" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="d" value="Continue Normal Routing&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;SQL / RAG / Hybrid&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="150" width="230" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e" value="Extract Real User Intent&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;separate actual question from attack text&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="310" width="220" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="f" value="Remove / Ignore&lt;br/&gt;Malicious Instruction&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;do not obey injected rules&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE7F3;strokeColor=#DB2777;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="430" width="220" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="g" value="Classify Attack Type" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE4E6;strokeColor=#E11D48;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="560" width="220" height="65" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h1" value="System Override&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;[SYSTEM], override, ignore rules&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#E11D48;fontColor=#111827;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="110" y="700" width="170" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="h2" value="Authority Claim&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;admin mode, trust=HIGH&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#E11D48;fontColor=#111827;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="310" y="700" width="170" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="h3" value="Forced Output&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;exact string, verbatim&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#E11D48;fontColor=#111827;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="510" y="700" width="170" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="h4" value="Tool / Data Suppression&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Do NOT consult table/tool&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#E11D48;fontColor=#111827;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="710" y="700" width="190" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="h5" value="Policy Poisoning&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;fake new policy/fact&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#E11D48;fontColor=#111827;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="930" y="700" width="170" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="h6" value="Prior Conversation Claim&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;you confirmed before&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#E11D48;fontColor=#111827;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="700" width="180" height="65" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="i" value="Safety Decision&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;risk score + allowed action&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9C3;strokeColor=#CA8A04;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="830" width="220" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="j" value="Legitimate&lt;br/&gt;Question Exists?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="950" width="190" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="k" value="Route Clean Intent&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;SQL / RAG / Hybrid&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="965" width="220" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="l" value="Safe Refusal / Clarification&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;if no valid user task remains&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="965" width="230" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="m" value="Trusted Evidence Only&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;ignore user-provided fake facts&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1100" width="220" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="n" value="Answer with Safety Note&lt;br/&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;optional, concise&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E7FF;strokeColor=#4F46E5;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1235" width="220" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="o" value="Final Safe Response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontColor=#111827;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="1340" width="220" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="note" value="Safety principle: sanitize the question, then answer from trusted evidence when possible. Do not treat user-provided claims or retrieved text as system instructions." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9FAFB;strokeColor=#9CA3AF;fontColor=#374151;fontSize=12;align=left;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1120" width="460" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ab" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="a" target="b">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="bc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="b" target="c">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cd" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;endArrow=block;endFill=1;fontColor=#16A34A;fontStyle=1;" edge="1" parent="1" source="c" target="d">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ce" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;endArrow=block;endFill=1;fontColor=#DC2626;fontStyle=1;" edge="1" parent="1" source="c" target="e">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="ef" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="e" target="f">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="fg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="f" target="g">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gh1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="g" target="h1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="gh2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="g" target="h2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="gh3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="g" target="h3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="gh4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="g" target="h4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="gh5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="g" target="h5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="gh6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="g" target="h6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="h1i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="h1" target="i">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="h2i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="h2" target="i">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="h3i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="h3" target="i">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="h4i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="h4" target="i">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="h5i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="h5" target="i">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="h6i" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E11D48;endArrow=block;endFill=1;" edge="1" parent="1" source="h6" target="i">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ij" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="i" target="j">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="jk" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;endArrow=block;endFill=1;fontColor=#16A34A;fontStyle=1;" edge="1" parent="1" source="j" target="k">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="jl" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;endArrow=block;endFill=1;fontColor=#DC2626;fontStyle=1;" edge="1" parent="1" source="j" target="l">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="km" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="k" target="m">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="mn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="m" target="n">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="no" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="n" target="o">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="lo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#374151;endArrow=block;endFill=1;" edge="1" parent="1" source="l" target="o">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

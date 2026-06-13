@@ -1,0 +1,33 @@
+{
+  "name": "fahmai-sql-rag-agent-api",
+  "description": "Guarded FahMai SQL/RAG agent API with Qwen NVFP4 and ThaiLLM/Typhoon vLLM backends.",
+  "entrypoints": {
+    "api": "api_server.py",
+    "batch": "data-parser/run_orchestrator_csv.py",
+    "qwen_vllm": "serve_qwen_vllm.sh",
+    "thaillm_vllm": "serve_thaillm.sh",
+    "dual_backend_api": "start_fahmai_api.sh",
+    "thaillm_only_api": "start_thaillm_api.sh"
+  },
+  "api_routes": {
+    "qwen": "POST /agent/local",
+    "thaillm": "POST /agent/thaillm",
+    "health": "GET /health"
+  },
+  "source_dirs": [
+    "data-parser",
+    "safety_route"
+  ],
+  "tracked_data": [
+    "questions.csv",
+    "sample_submission.csv",
+    "data-parser/output/.gitkeep"
+  ],
+  "ignored_runtime_artifacts": [
+    "data-parser/output/*.duckdb",
+    "_archive/",
+    "__pycache__/",
+    "logs/",
+    "test_submission/"
+  ]
+}
