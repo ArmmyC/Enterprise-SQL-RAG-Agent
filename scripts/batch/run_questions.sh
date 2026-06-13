@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Run the FahMai orchestrator over questions.csv against the local Qwen (vLLM :8001)
+# Run the FahMai orchestrator over data/questions.csv against the local Qwen (vLLM :8001)
 # + bge-m3 + DuckDB. Usage:
-#   ./run_questions.sh [LIMIT] [OUTPUT_SUFFIX]
-# e.g.  ./run_questions.sh 2 smoke    -> first 2 questions  -> test_submission/orchestrator_results_smoke.jsonl
-#       ./run_questions.sh            -> all questions      -> test_submission/orchestrator_results.jsonl
+#   ./scripts/batch/run_questions.sh [LIMIT] [OUTPUT_SUFFIX]
+# e.g.  ./scripts/batch/run_questions.sh 2 smoke -> first 2 questions -> test_submission/orchestrator_results_smoke.jsonl
+#       ./scripts/batch/run_questions.sh         -> all questions     -> test_submission/orchestrator_results.jsonl
 set -euo pipefail
 
 ENV=/root/data/miniforge3/envs/fahmai
@@ -27,7 +27,7 @@ if [ -n "$LIMIT" ]; then LIMIT_ARG=(--limit "$LIMIT"); fi
 
 set -x
 exec "$ENV/bin/python" data-parser/run_orchestrator_csv.py \
-  --questions-csv questions.csv \
+  --questions-csv data/questions.csv \
   --output "$OUT" \
   --full --progress \
   --enable-input-guard --safety-route-dir safety_route \

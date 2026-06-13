@@ -9,7 +9,7 @@ This folder contains the code used for the final guarded SQL/RAG submission pipe
 - `data-parser/output/` - local DuckDB runtime artifacts. This directory is kept
   with `.gitkeep`, but `*.duckdb` files are ignored because they are large.
 - `api_server.py` - FastAPI wrapper exposing `/agent/local` and `/agent/thaillm`.
-- `serve_qwen_vllm.sh` / `serve_thaillm.sh` - vLLM launchers for the two model backends.
+- `scripts/models/serve_qwen_vllm.sh` / `scripts/models/serve_thaillm.sh` - vLLM launchers for the two model backends.
 - `_archive/` - local-only snapshot/zip backup from cleanup; ignored by Git.
 
 ## Main Entry Point
@@ -18,7 +18,7 @@ Run a batch:
 
 ```bash
 python data-parser/run_orchestrator_csv.py \
-  --questions-csv questions.csv \
+  --questions-csv data/questions.csv \
   --output test_submission/orchestrator_results.jsonl \
   --full \
   --progress \
@@ -39,7 +39,7 @@ Normalize a JSONL run into a submission CSV:
 
 ```bash
 python data-parser/normalize_submission_answers.py \
-  --sample-csv test_submission/sample_submission.csv \
+  --sample-csv data/sample_submission.csv \
   --jsonl test_submission/orchestrator_results.jsonl \
   --output-csv test_submission/submission.csv \
   --fill-range 1-100 \

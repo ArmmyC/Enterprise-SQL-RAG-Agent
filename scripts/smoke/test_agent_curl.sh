@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Quick test of the FahMai agent endpoint through the public proxy.
 # Usage:
-#   ./test_agent_curl.sh                # sends questions.csv #1 (L3-Q-EASY-001)
-#   ./test_agent_curl.sh "your question" # sends a custom question
+#   ./scripts/smoke/test_agent_curl.sh                # sends data/questions.csv #1 (L3-Q-EASY-001)
+#   ./scripts/smoke/test_agent_curl.sh "your question" # sends a custom question
 #
 # Endpoint contract:
 #   POST .../agent/thaillm   {"question": "..."}
@@ -10,7 +10,7 @@
 
 URL="${FAHMAI_URL:-http://swarm-manager.modelharbor.com:47378/agent/thaillm}"
 
-# Default = questions.csv question #1 (L3-Q-EASY-001)
+# Default = data/questions.csv question #1 (L3-Q-EASY-001)
 DEFAULT_Q="MSRP ของสินค้ารหัส NT-LT-001 (NovaTech laptop) เป็นเท่าไหร่ครับ"
 QUESTION="${1:-$DEFAULT_Q}"
 

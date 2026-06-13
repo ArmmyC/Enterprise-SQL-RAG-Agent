@@ -1,6 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-$Root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$Root = Resolve-Path (Join-Path $ScriptDir "..\..")
 Set-Location $Root
 
 $EnvFile = Join-Path $Root ".env"

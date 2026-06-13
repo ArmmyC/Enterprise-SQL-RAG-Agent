@@ -13,13 +13,13 @@ Both endpoints share the same DuckDB database, BGE-M3 embedding/RAG layer, deter
 api_server.py                  FastAPI wrapper for the agent endpoints
 data-parser/                   SQL/RAG orchestrator, router, tools, entity resolver
 safety_route/                  Prompt-injection detector and safe-response layer
-serve_qwen_vllm.sh             Starts the Qwen NVFP4 vLLM backend on :8001
-serve_thaillm.sh               Starts the ThaiLLM/Typhoon vLLM backend on :8002
-start_fahmai_api.sh            Starts the API with both backend routes configured
-start_thaillm_api.sh           Starts the API pointed only at ThaiLLM/Typhoon
-run_questions.sh               Batch runner for questions.csv
-questions.csv                  Evaluation/input questions
-sample_submission.csv          Submission template
+scripts/api/                   API launchers for local and B200 deployment
+scripts/models/                vLLM launchers for Qwen and ThaiLLM/Typhoon
+scripts/batch/                 Batch runner for data/questions.csv
+scripts/smoke/                 Curl smoke test helper
+data/questions.csv             Evaluation/input questions
+data/sample_submission.csv     Submission template
+docs/deployment.md             Batch and deployment notes
 ```
 
 Large runtime files are intentionally ignored by Git. Put the DuckDB file at:
@@ -40,7 +40,7 @@ Start the API after configuring the environment:
 
 ```bash
 cp .env.example .env
-./start_api.sh
+./scripts/api/start_api.sh
 ```
 
 Smoke test:
@@ -62,14 +62,14 @@ Response contract:
 On the B200 host, run the model servers first:
 
 ```bash
-./serve_qwen_vllm.sh
-./serve_thaillm.sh
+./scripts/models/serve_qwen_vllm.sh
+./scripts/models/serve_thaillm.sh
 ```
 
 Then start the API:
 
 ```bash
-FAHMAI_APP_DIR=/root/data/API-Ready ./start_fahmai_api.sh
+FAHMAI_APP_DIR=/root/data/API-Ready ./scripts/api/start_fahmai_api.sh
 ```
 
-Use `FAHMAI_LLM_API_BASE` / `FAHMAI_LLM_MODEL` for the Qwen route and `FAHMAI_THAILLM_LLM_API_BASE` / `FAHMAI_THAILLM_LLM_MODEL` for the ThaiLLM route. See `.env.example` and `README_DEPLOY.md` for the full deployment configuration.
+Use `FAHMAI_LLM_API_BASE` / `FAHMAI_LLM_MODEL` for the Qwen route and `FAHMAI_THAILLM_LLM_API_BASE` / `FAHMAI_THAILLM_LLM_MODEL` for the ThaiLLM route. See `.env.example` and `docs/deployment.md` for the full deployment configuration.

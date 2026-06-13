@@ -4,10 +4,10 @@
   "entrypoints": {
     "api": "api_server.py",
     "batch": "data-parser/run_orchestrator_csv.py",
-    "qwen_vllm": "serve_qwen_vllm.sh",
-    "thaillm_vllm": "serve_thaillm.sh",
-    "dual_backend_api": "start_fahmai_api.sh",
-    "thaillm_only_api": "start_thaillm_api.sh"
+    "qwen_vllm": "scripts/models/serve_qwen_vllm.sh",
+    "thaillm_vllm": "scripts/models/serve_thaillm.sh",
+    "dual_backend_api": "scripts/api/start_fahmai_api.sh",
+    "thaillm_only_api": "scripts/api/start_thaillm_api.sh"
   },
   "api_routes": {
     "qwen": "POST /agent/local",
@@ -19,8 +19,8 @@
     "safety_route"
   ],
   "tracked_data": [
-    "questions.csv",
-    "sample_submission.csv",
+    "data/questions.csv",
+    "data/sample_submission.csv",
     "data-parser/output/.gitkeep"
   ],
   "ignored_runtime_artifacts": [
